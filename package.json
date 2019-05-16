@@ -1,0 +1,26 @@
+{
+  "name": "riteway-jest",
+  "version": "1.0.0",
+  "description": "Unit tests that always supply a good bug report when they fail for Jest.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janhesters/riteway-jest.git"
+  },
+  "keywords": [
+    "testing",
+    "jest",
+    "react",
+    "riteway",
+    "unit"
+  ],
+  "author": "Jan Hesters",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/janhesters/riteway-jest/issues"
+  },
+  "homepage": "https://geromekevin.com"
+}
