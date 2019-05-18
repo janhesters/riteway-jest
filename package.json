@@ -4,7 +4,7 @@
   "description": "Unit tests that always supply a good bug report when they fail for Jest.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,14 @@
   "bugs": {
     "url": "https://github.com/janhesters/riteway-jest/issues"
   },
-  "homepage": "https://geromekevin.com"
+  "homepage": "https://geromekevin.com",
+  "dependencies": {
+    "esm": "3.2.25"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.4",
+    "@babel/preset-env": "7.4.4",
+    "babel-jest": "24.8.0",
+    "jest": "24.8.0"
+  }
 }
