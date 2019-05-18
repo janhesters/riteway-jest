@@ -73,6 +73,20 @@ module.exports = {
 };
 ```
 
+If ESLint yells at you, add a `global` key to your `.eslintrc.json`.
+
+```json
+{
+  // ...
+  "globals": {
+    "assert": true
+  },
+  "rules": {
+    // ...
+  }
+}
+```
+
 ## Usage
 
 ```js
