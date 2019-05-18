@@ -23,10 +23,6 @@ disadvantages.
 - You can't use it to test React Native component's because Jest has the only
   good up to date React Native mock.
 - There might be some other Jest features that RITEway lacks.
-- You can't use it with
-  [React Testing Library](https://github.com/testing-library/react-testing-library)
-  and have to rely on RITEway's `render` function which wraps
-  [Cheerio](https://github.com/cheeriojs/cheerio).
 - I know this is minor, but you also have to do more setup compared to Jest,
   which just works™ for React Native and
   [React apps created with CRA](https://facebook.github.io/create-react-app/docs/running-tests).
@@ -36,12 +32,13 @@ disadvantages.
 - RITEway forces you to
   [split your components' tests in an effective way](https://medium.com/javascript-scene/unit-testing-react-components-aeda9a44aae2).
   This means only testing display components and their respective split off pure
-  logic with unit tests and the rest using E2E tests.
+  logic with unit tests and covering the rest of your code using E2E tests.
 - [You can't mock.](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)
 
 You might want to check out RITEway because you can
 [learn these advantages](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
-first hand.
+first hand. I prefer RITEway for React apps and use RITEway-Jest for React
+Native apps.
 
 ## Installation
 
@@ -61,7 +58,16 @@ Then import it in your `src/setupTests.js` for React with CRA.
 import 'riteway-jest/assert';
 ```
 
-And for React Native you need to add it to your `jest.config.js`.
+For React Native you need to add a key in your `package.json` to the `jest` key.
+
+```json
+"jest": {
+  "preset": "react-native",
+  "setupFilesAfterEnv": ["riteway-jest/assert"]
+}
+```
+
+If you have a `jest.config.js`.
 
 ```js
 module.exports = {
@@ -77,17 +83,19 @@ If ESLint yells at you, add a `global` key to your `.eslintrc.json`.
 
 ```json
 {
-  // ...
+  "_comment": "<Your other settings here>",
   "globals": {
     "assert": true
   },
   "rules": {
-    // ...
+    "_comment": "<Your rules here>"
   }
 }
 ```
 
 ## Usage
+
+With pure functions.
 
 ```js
 const sum = (a = 0, b = 0) => a + b;
@@ -115,5 +123,93 @@ describe('sum()', () => {
     actual: sum(1, -4),
     expected: -3,
   });
+});
+```
+
+Using
+[React Native Testing Library](https://github.com/callstack/react-native-testing-library).
+
+```js
+import React from 'react';
+import { Text } from 'react-native';
+import { render } from 'react-native-testing-library';
+
+function MyText({ title }) {
+  return <Text>{title}</Text>;
+}
+
+describe('Text component', () => {
+  const createText = (props = {}) => render(<MyText {...props} />);
+
+  {
+    const props = { title: 'Foo' };
+    const $ = createText(props).getByType;
+
+    assert({
+      given: 'a title',
+      should: 'display the title',
+      actual: $('Text').props.children,
+      expected: props.title,
+    });
+  }
+});
+```
+
+Using
+[React Testing Library](https://github.com/testing-library/react-testing-library).
+
+```js
+import PropTypes from 'prop-types';
+import React from 'react';
+import { cleanup, render } from 'react-testing-library';
+
+function Button({ disabled, onClick, text }) {
+  return (
+    <button data-testid="foo" disabled={disabled} onClick={onClick}>
+      {text}
+    </button>
+  );
+}
+
+Button.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string,
+};
+
+Button.defaultProps = {
+  disabled: false,
+  text: '',
+};
+
+describe('button component', () => {
+  const createButton = (props = {}) =>
+    render(<Button onClick={() => {}} {...props} />);
+
+  {
+    const props = { text: 'foo' };
+    const $ = createButton(props).getByTestId;
+
+    assert({
+      given: 'a text',
+      should: "render 'foo'",
+      actual: $('foo').textContent,
+      expected: props.text,
+    });
+    cleanup();
+  }
+
+  {
+    const props = { disabled: true, text: 'foo' };
+    const $ = createButton(props).getByText;
+
+    assert({
+      given: 'disabled',
+      should: 'be disabled',
+      actual: $('foo').hasAttribute('disabled'),
+      expected: props.disabled,
+    });
+    cleanup();
+  }
 });
 ```
