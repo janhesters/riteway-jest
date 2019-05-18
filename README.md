@@ -58,7 +58,7 @@ yarn add --dev riteway-jest
 Then import it in your `src/setupTests.js` for React with CRA.
 
 ```js
-import 'riteway-jest';
+import 'riteway-jest/assert';
 ```
 
 And for React Native you need to add it to your `jest.config.js`.
@@ -66,7 +66,7 @@ And for React Native you need to add it to your `jest.config.js`.
 ```js
 module.exports = {
   setupFilesAfterEnv: [
-    'riteway-jest',
+    'riteway-jest/assert',
     // ... other setup files ...
   ],
   // ... other options ...

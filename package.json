@@ -1,6 +1,6 @@
 {
   "name": "riteway-jest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Unit tests that always supply a good bug report when they fail for Jest.",
   "main": "src/index.js",
   "scripts": {
