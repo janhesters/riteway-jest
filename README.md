@@ -20,8 +20,8 @@ disadvantages.
 
 ### Disadvantages
 
-- You can't use it to test React Native component's because Jest has the only
-  good up to date React Native mock.
+- You can't use it to test React Native components because Jest has the only
+  good, up to date React Native mock.
 - There might be some other Jest features that RITEway lacks.
 - I know this is minor, but you also have to do more setup compared to Jest,
   which just works™ for React Native and
@@ -32,7 +32,7 @@ disadvantages.
 - RITEway forces you to
   [split your components' tests in an effective way](https://medium.com/javascript-scene/unit-testing-react-components-aeda9a44aae2).
   This means only testing display components and their respective split off pure
-  logic with unit tests and covering the rest of your code using E2E tests.
+  logic with unit tests, while covering the rest of your code using E2E tests.
 - [You can't mock.](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)
 
 You might want to check out RITEway because you can
