@@ -216,7 +216,7 @@ describe('button component', () => {
 
 ### skip & only
 
-`assert` supports Jest's skip and only functions.
+`assert` supports Jest's `skip` and `only` functions.
 
 ```js
 // This test is explicitly skipped
@@ -236,7 +236,6 @@ assert.only({
 });
 
 // This test is implicitly skipped because the .only() above
-
 assert({
   given: 'something',
   should: 'be equal to something',
