@@ -1,4 +1,12 @@
-import assertCreator from './assert-creator.js';
+const assertCreator = itFunc => ({
+  given = '',
+  should = '',
+  actual = undefined,
+  expected = undefined,
+}) =>
+  itFunc(`given ${given}: should ${should}`, () => {
+    expect(actual).toEqual(expected);
+  });
 
 // use the jest `it` function
 global.assert = assertCreator(global.it);
@@ -10,4 +18,4 @@ global.assert.skip = assertCreator(global.it.skip);
 // only calls the same function but uses `only` internaly
 global.assert.only = assertCreator(global.it.only);
 
-export default global.assert;
+module.exports = global.assert;
