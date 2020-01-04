@@ -1,16 +1,7 @@
-import { assert } from './';
-
 const sum = (a = 0, b = 0) => a + b;
 
-describe('sum()', () => {
+describe('sum() - tested with `assert`', () => {
   const should = 'return the correct sum';
-
-  assert.skip({
-    given: 'undefined',
-    should: 'explicitly skip this test',
-    actual: sum(undefined),
-    expected: null,
-  });
 
   assert({
     given: 'no arguments',
@@ -32,17 +23,11 @@ describe('sum()', () => {
     actual: sum(1, -4),
     expected: -3,
   });
-});
 
-describe('skip()', () => {
-  test('it skips the function', () => {
-    it.skip = jest.fn();
-    assert.skip({
-      given: 'something',
-      should: 'be equal to something',
-      actual: 'nothing',
-      expected: 'something',
-    });
-    expect(it.skip).toHaveBeenCalledTimes(1);
+  assert.skip({
+    given: 'used with `.skip`',
+    should: 'never run',
+    actual: false,
+    expected: true,
   });
 });

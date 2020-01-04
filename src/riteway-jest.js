@@ -1,34 +1,13 @@
-const assert = ({
-  given = undefined,
-  should = '',
-  actual = undefined,
-  expected = undefined,
-} = {}) => {
-  it(`given ${given}: should ${should}`, () => {
-    expect(actual).toEqual(expected);
-  });
-};
+import assertCreator from './assert-creator.js';
 
-assert.skip = ({
-  given = undefined,
-  should = '',
-  actual = undefined,
-  expected = undefined,
-} = {}) => {
-  it.skip(`given ${given}: should ${should}`, () => {
-    expect(actual).toEqual(expected);
-  });
-};
+// use the jest `it` function
+global.assert = assertCreator(global.it);
 
-assert.only = ({
-  given = undefined,
-  should = '',
-  actual = undefined,
-  expected = undefined,
-} = {}) => {
-  it.only(`given ${given}: should ${should}`, () => {
-    expect(actual).toEqual(expected);
-  });
-};
+// bypass for todo and skip
+global.assert.todo = assertCreator(global.it.skip);
+global.assert.skip = assertCreator(global.it.skip);
 
-export { assert };
+// only calls the same function but uses `only` internaly
+global.assert.only = assertCreator(global.it.only);
+
+export default global.assert;

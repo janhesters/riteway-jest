@@ -1,14 +1,36 @@
 {
-  "name": "riteway-jest",
-  "version": "1.1.0",
-  "description": "Unit tests that always supply a good bug report when they fail for Jest.",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "jest"
+  "author": {
+    "email": "jan.hesters@coderemail.com",
+    "name": "Jan Hesters",
+    "url": "https://twitter.com/janhesters"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/janhesters/riteway-jest.git"
+  "bugs": {
+    "url": "https://github.com/janhesters/riteway-jest/issues"
+  },
+  "dependencies": {},
+  "description": "Unit tests that always supply a good bug report when they fail for Jest.",
+  "devDependencies": {
+    "@babel/core": "7.7.7",
+    "@babel/preset-env": "7.7.7",
+    "babel-jest": "24.9.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-simple-import-sort": "5.0.0",
+    "husky": "3.1.0",
+    "jest": "24.9.0",
+    "prettier": "1.19.1"
+  },
+  "homepage": "https://janhesters.com",
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn -s validate"
+    }
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./src/riteway-jest.js"
+    ]
   },
   "keywords": [
     "testing",
@@ -17,19 +39,16 @@
     "riteway",
     "unit"
   ],
-  "author": "Jan Hesters",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/janhesters/riteway-jest/issues"
+  "main": "src/index.js",
+  "name": "riteway-jest",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janhesters/riteway-jest.git"
   },
-  "homepage": "https://geromekevin.com",
-  "dependencies": {
-    "esm": "3.2.25"
+  "scripts": {
+    "test": "jest",
+    "validate": "npm run test"
   },
-  "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@babel/preset-env": "7.4.4",
-    "babel-jest": "24.8.0",
-    "jest": "24.8.0"
-  }
+  "version": "2.0.0"
 }

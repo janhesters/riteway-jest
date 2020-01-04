@@ -1,0 +1,30 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "jest": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:prettier/recommended"
+    ],
+    "globals": {
+        "assert": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2019,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "simple-import-sort"
+    ],
+    "rules": {
+        "import/order": "off",
+        "simple-import-sort/sort": "error"
+    }
+}

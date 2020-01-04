@@ -1,20 +1,15 @@
-import { assert } from './riteway-jest';
-
-describe('only()', () => {
-  expect.assertions(1);
-  const testFn = () => 'foo';
-
-  assert.only({
-    given: 'calling the testFn',
-    should: 'return foo',
-    actual: testFn(),
-    expected: 'foo',
+describe('test suite with `.only`', () => {
+  assert({
+    given: 'test running and another test has `.only`',
+    should: 'not run',
+    actual: true,
+    expected: false,
   });
 
-  assert({
-    given: 'calling the testFn',
-    should: 'implicitly skip this test',
-    actual: testFn(),
-    expected: 'foo',
+  assert.only({
+    given: 'used with `.only`',
+    should: 'run',
+    actual: true,
+    expected: true,
   });
 });
