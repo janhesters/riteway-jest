@@ -36,13 +36,15 @@ or
 yarn add --dev riteway-jest
 ```
 
-Then import it in your `src/setupTests.js` for React with CRA.
+## Setup
+### React with CRA
+Add an import in your `src/setupTests.js`.
 
 ```js
 import 'riteway-jest/src/riteway-jest.js';
 ```
-
-For React Native you need to add a key in your `package.json` to the `jest` key.
+### React Native
+Add to your `jest` key in `package.json`.
 
 ```json
 "jest": {
@@ -51,7 +53,17 @@ For React Native you need to add a key in your `package.json` to the `jest` key.
 }
 ```
 
-If you have a `jest.config.js`.
+### React Native with Expo
+Add to your `jest` key in `package.json`.
+
+```json
+"jest": {
+  "preset": "jest-expo",
+  "setupFilesAfterEnv": ["node_modules/riteway-jest/src/riteway-jest.js"]
+}
+```
+
+### `jest.config.js` instead of `package.json`.
 
 ```js
 module.exports = {
@@ -63,13 +75,16 @@ module.exports = {
 };
 ```
 
-If ESLint yells at you, add a `global` key to your `.eslintrc.json`.
+## Tips
+
+### ESLint complains
+Add a `global` key to your `.eslintrc.json`.
 
 ```json
 {
   "_comment": "<Your other settings here>",
   "globals": {
-    "assert": true
+    "assert": 'readonly'
   },
   "rules": {
     "_comment": "<Your rules here>"
