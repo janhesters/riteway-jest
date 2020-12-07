@@ -49,7 +49,7 @@ Add to your `jest` key in `package.json`.
 ```json
 "jest": {
   "preset": "react-native",
-  "setupFilesAfterEnv": ["./node_modules/riteway-jest/src/riteway-jest.js"]
+  "setupFilesAfterEnv": ["<rootDir>/node_modules/riteway-jest/src/riteway-jest.js"]
 }
 ```
 
@@ -59,7 +59,7 @@ Add to your `jest` key in `package.json`.
 ```json
 "jest": {
   "preset": "jest-expo",
-  "setupFilesAfterEnv": ["./node_modules/riteway-jest/src/riteway-jest.js"]
+  "setupFilesAfterEnv": ["<rootDir>/node_modules/riteway-jest/src/riteway-jest.js"]
 }
 ```
 
@@ -68,7 +68,7 @@ Add to your `jest` key in `package.json`.
 ```js
 module.exports = {
   setupFilesAfterEnv: [
-    './node_modules/riteway-jest/src/riteway-jest.js',
+    '<rootDir>/node_modules/riteway-jest/src/riteway-jest.js',
     // ... other setup files ...
   ],
   // ... other options ...
